@@ -1,38 +1,16 @@
 import * as d3 from "d3";
 import './style/main.scss';
 
-var data = {
-    '2016-08-30': {
-        'dau': 50,
-        'nau': 7
-    },
-    '2016-08-31': {
-        'dau': 51,
-        'nau': 20
-    },
-    '2016-09-01': {
-        'dau': 60,
-        'nau': 15
-    },
-    '2016-09-02': {
-        'dau': 71,
-        'nau': 19
-    },
-    '2016-09-03': {
-        'dau': 57,
-        'nau': 16
-    }
-};
-
 
 export default class App {
-    constructor(width, height, padding, formatDate) {
-        this.margin = {
+    constructor(data, width, height, margin, formatDate) {
+        this.margin = margin || {
             top: 20,
             right: 100,
             bottom: 50,
             left: 100
         };
+        this.data = data;
         this.width = width || 1000;
         this.height = height || 500;
 
@@ -41,8 +19,8 @@ export default class App {
 
         this.formatDate = formatDate || d3.timeFormat('%Y-%m-%d');
         const self = this;
-        const dates = window._.keys(data).map(item => new Date(item));
-        this.mappedData = window._.map(data, (item, key) => {
+        const dates = window._.keys(this.data).map(item => new Date(item));
+        this.mappedData = window._.map(this.data, (item, key) => {
             return {
                 date: new Date(key),
                 ...item

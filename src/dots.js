@@ -19,11 +19,11 @@ class Dots {
         this.height = this.height - this.margin.top - this.margin.bottom;
 
         this.xScale = d3.scaleLinear()
-            .domain(d3.extent(this.data.map(item => item.rateAmount)))
+            .domain(d3.extent(this.data.map(item => item.days)))
             .range([0, this.width]);
 
         this.yScale = d3.scaleLinear()
-            .domain(d3.extent(this.data.map(item => item.days)))
+            .domain(d3.extent(this.data.map(item => item.rateAmount)))
             .range([this.height, 0]);
 
         this.axisX = d3.axisBottom(this.xScale);
@@ -66,7 +66,7 @@ class Dots {
       this.svg.append("text")
           .attr("transform", "rotate(-90)")
           .attr("x", this.height / 2 * (-1))
-          .attr("y", -30)
+          .attr("y", -50)
           .style("text-anchor", "middle")
           .text("Сумма ставок за 6 месяцев");
 
@@ -77,14 +77,14 @@ class Dots {
       this.svg.selectAll("dot")
           .data(this.data)
           .enter().append("circle")
-          .attr("r", 2)
+          .attr("r", 3)
           .attr("class", "point")
           .style("opacity", ".5")
           .attr("cx", function(d) {
-              return self.xScale(d.rateAmount);
+              return self.xScale(d.days);
           })
           .attr("cy", function(d) {
-              return self.yScale(d.days);
+              return self.yScale(d.rateAmount);
           })
           .on("mouseover", function(d) {
               self.tooltip.html('<div><div> Rate Amount: ' + d.rateAmount + '</div><div>  Days: ' + d.days + '</div></div>')

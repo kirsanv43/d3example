@@ -1,6 +1,32 @@
 import app from './app';
 import dots from './dots';
-(new app()).render("#liner");
+
+
+var data1 = {
+    '2016-08-30': {
+        'dau': 50,
+        'nau': 7
+    },
+    '2016-08-31': {
+        'dau': 51,
+        'nau': 20
+    },
+    '2016-09-01': {
+        'dau': 60,
+        'nau': 15
+    },
+    '2016-09-02': {
+        'dau': 71,
+        'nau': 19
+    },
+    '2016-09-03': {
+        'dau': 57,
+        'nau': 16
+    }
+};
+
+
+(new app(data1)).render("#liner");
 
 
 var data = [
