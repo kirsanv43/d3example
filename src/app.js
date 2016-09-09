@@ -1,5 +1,4 @@
 import * as d3 from "d3";
-import _ from 'lodash';
 import './style/main.scss';
 
 var data = {
@@ -42,16 +41,16 @@ export default class App {
 
         this.formatDate = formatDate || d3.timeFormat('%Y-%m-%d');
         const self = this;
-        const dates = _.keys(data).map(item => new Date(item));
-        this.mappedData = _.map(data, (item, key) => {
+        const dates = window._.keys(data).map(item => new Date(item));
+        this.mappedData = window._.map(data, (item, key) => {
             return {
                 date: new Date(key),
                 ...item
             };
         });
 
-        var minDate = _.min(dates);
-        var maxDate = _.max(dates);
+        var minDate = window._.min(dates);
+        var maxDate = window._.max(dates);
 
 
 
@@ -59,13 +58,13 @@ export default class App {
             .domain([minDate, maxDate])
             .range([0, this.width]);
 
-        var yRange = _.transform(this.mappedData, function(result, n) {
+        var yRange = window._.transform(this.mappedData, function(result, n) {
             result.push(n.dau);
             result.push(n.nau);
         }, []);
 
-        var minRange = _.min(yRange);
-        var maxRange = _.max(yRange);
+        var minRange = window._.min(yRange);
+        var maxRange = window._.max(yRange);
         this.yScale = d3.scaleLinear()
             .domain([minRange, maxRange])
             .range([this.height, 0]);

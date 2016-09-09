@@ -1,11 +1,10 @@
 import * as d3 from "d3";
-import _ from 'lodash';
 import './style/main.scss';
 
 
 
 
-export default class Dots {
+class Dots {
     constructor(data, width, height, margin) {
         this.margin = margin || {
             top: 20,
@@ -74,12 +73,13 @@ export default class Dots {
     }
 
     renderDots() {
+      const self= this;
       this.svg.selectAll("dot")
           .data(this.data)
           .enter().append("circle")
           .attr("r", 2)
           .attr("class", "point")
-          .style("opacity", ".3")
+          .style("opacity", ".5")
           .attr("cx", function(d) {
               return self.xScale(d.rateAmount);
           })
@@ -103,5 +103,8 @@ export default class Dots {
         this.renderSvg(id);
         this.renderAxis();
         this.renderLabels();
+        this.renderDots();
     }
 }
+window.Dots = Dots;
+export default Dots;
