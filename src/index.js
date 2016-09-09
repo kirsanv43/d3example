@@ -1,4 +1,4 @@
-import app from './app';
+import liner from './liner';
 import dots from './dots';
 
 
@@ -26,7 +26,7 @@ var data1 = {
 };
 
 
-(new app(data1)).render("#liner");
+(new liner(data1)).render("#liner");
 
 
 var data = [

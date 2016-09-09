@@ -2,7 +2,7 @@ import * as d3 from "d3";
 import './style/main.scss';
 
 
-export default class App {
+class Liner {
     constructor(data, width, height, margin, formatDate) {
         this.margin = margin || {
             top: 20,
@@ -173,3 +173,7 @@ export default class App {
 
     }
 }
+
+
+window.Liner = Liner;
+export default Liner;
